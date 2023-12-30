@@ -1,0 +1,2 @@
+C:\Users\zbant\OneDrive\Desktop\Personal Work\MathematicalEquationEvaluator\UnitTests\x64\Debug\UnitTests.vcxproj.CopyComplete
+C:\Users\zbant\OneDrive\Desktop\Personal Work\Mathematical Evaluator\mathEvaluator\UnitTests\x64\Debug\UnitTests.vcxproj.CopyComplete
