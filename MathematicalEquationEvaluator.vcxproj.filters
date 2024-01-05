@@ -18,7 +18,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ParenthesisChecker.cpp">
+    <ClCompile Include="ValidityChecker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MathInterpretter.cpp">
@@ -29,13 +29,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ParenthesisChecker.hpp">
+    <ClInclude Include="ValidityChecker.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MathInterpretter.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MathematicalOperations.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalVariablePanel.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,5 @@
 #include "MathInterpretter.hpp"
-
+#include "GlobalVariablePanel.hpp"
 void calculationOfNumbers(cathegorizedStringPartitions& inputData, int iteratorOfSign, float (*calculation)(float,float))
 {
 	inputData.numbers[inputData.mathematicalSigns[iteratorOfSign].second.first] =
@@ -50,10 +50,10 @@ float returnResultOfCalculation(cathegorizedStringPartitions inputData, unsigned
 float breakStringInClassesAndCalculate(std::string inputString, short &pozOfCursorInInput)
 {
 	cathegorizedStringPartitions foundCathegories;
-	std::vector<char> listOfmathSigns = { '*', '/', '+', '-' };
 	bool isMathSign=false, isNumerDiscoverInProgress=false, isNegativeNumber=false;
 	unsigned int indexParanthesis=0, indexNumbers=0, indexSigns=0, indexConfiguration=0;
 	int discoveredNumber = 0;
+	float resultParanthesis = 0;
 	if (inputString[pozOfCursorInInput] == '-') //if there is the case of -1+2*3 or 1+2*(-1) i have to easily identify the -
 	{
 		isNegativeNumber = true;
@@ -65,14 +65,27 @@ float breakStringInClassesAndCalculate(std::string inputString, short &pozOfCurs
 		{
 		case '('://WIP not yet tested
 			pozOfCursorInInput++;
-			breakStringInClassesAndCalculate(inputString, pozOfCursorInInput);
+			resultParanthesis = breakStringInClassesAndCalculate(inputString, pozOfCursorInInput);
+			if (isNegativeNumber)
+			{
+				resultParanthesis = -resultParanthesis;
+			}
+			foundCathegories.numbers.push_back(resultParanthesis);
 			break;
 		case ')'://WIP not yet tested
 			if (isNumerDiscoverInProgress)
 			{
-				foundCathegories.numbers.push_back(discoveredNumber);
-				discoveredNumber = 0;
-				isNumerDiscoverInProgress = false;
+				if (isNumerDiscoverInProgress)
+				{
+					if (isNegativeNumber)
+					{
+						discoveredNumber = -discoveredNumber;
+						isNegativeNumber = false;
+					}
+					foundCathegories.numbers.push_back(discoveredNumber);
+					discoveredNumber = 0;
+					isNumerDiscoverInProgress = false;
+				}
 			}
 			return returnResultOfCalculation(foundCathegories, indexParanthesis, indexNumbers, indexSigns, indexConfiguration);
 		default:
@@ -97,13 +110,13 @@ float breakStringInClassesAndCalculate(std::string inputString, short &pozOfCurs
 				{
 					isNegativeNumber = true;
 				}
-				for (short signIndex = 0; signIndex < listOfmathSigns.size(); signIndex++)
+				for (short signIndex = 0; signIndex < strlen(admittedMathSigns); signIndex++)
 				{
-					if (inputString[pozOfCursorInInput] == listOfmathSigns[signIndex])
+					if (inputString[pozOfCursorInInput] == admittedMathSigns[signIndex])
 					{
 						isMathSign = true;
 						std::pair<char, std::pair<unsigned int, unsigned int>> pairToAdd;
-						pairToAdd.first = listOfmathSigns[signIndex];
+						pairToAdd.first = admittedMathSigns[signIndex];
 						if (inputString[pozOfCursorInInput] == '-')
 						{
 							pairToAdd.first = '+';//the substraction is the sum un the number in the left and some negative rumber in the right

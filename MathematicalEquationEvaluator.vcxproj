@@ -130,12 +130,13 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathematicalOperations.cpp" />
     <ClCompile Include="MathInterpretter.cpp" />
-    <ClCompile Include="ParenthesisChecker.cpp" />
+    <ClCompile Include="ValidityChecker.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GlobalVariablePanel.hpp" />
     <ClInclude Include="MathematicalOperations.hpp" />
     <ClInclude Include="MathInterpretter.hpp" />
-    <ClInclude Include="ParenthesisChecker.hpp" />
+    <ClInclude Include="ValidityChecker.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
